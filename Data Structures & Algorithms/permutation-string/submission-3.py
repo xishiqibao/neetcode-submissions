@@ -1,0 +1,20 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        count1 = defaultdict(int)
+        for s in s1:
+            count1[s] += 1
+        
+        need = len(s1)
+        for i in range(len(s2) - len(s1) + 1):
+            count2 = defaultdict(int)
+            cur = 0
+
+            for j in range(i, len(s2)):
+                count2[s2[j]] += 1
+                if(count1[s2[j]] < count2[s2[j]]):
+                    break
+                cur += 1
+                if(cur == need):
+                    return True
+                 
+        return False
